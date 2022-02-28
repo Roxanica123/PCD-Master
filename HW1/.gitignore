@@ -1,3 +1,5 @@
 .idea
 venv
 __pycache__
+dummy_file.txt
+test2.txt
