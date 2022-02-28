@@ -62,13 +62,13 @@ class TCPServer(Server):
                 while len(data) != to_be_received:
                     data = conn.recv(chunk_size - len(data))
                 conn.send(pack_length(1))
-
             if not data:
                 break
             messages_received += 1
-            if len(data) == 0:
-                print(messages_received)
-            bytes_received += len(data)
+            if stop_and_wait:
+                bytes_received += to_be_received
+            else:
+                bytes_received += len(data)
         conn.close()
         print(messages_received, bytes_received, flush=True)
 
@@ -81,21 +81,35 @@ class UDPServer(Server):
 
     def start_server(self):
         while True:
-            msg, addr = self.socket.recvfrom(4)
+            msg, addr = self.socket.recvfrom(5)
             self.current_address = addr
-            self.read_message(length=msg)
+            self.read_message(header=msg)
 
     def read_message(self, **kwargs):
-        length = kwargs["length"]
-        chunk_size = unpack_length(length)
+        header = kwargs["header"]
+        chunk_size, stop_and_wait = unpack_length_and_stop_and_wait_flag(header)
         self.socket.settimeout(5)
         bytes_read = 0
         messages_read = 0
         while True:
             try:
+                if stop_and_wait:
+                    to_be_received_bytes, addr = self.socket.recvfrom(4)
+                    to_be_received = unpack_length(to_be_received_bytes)
+
                 msg, addr = self.socket.recvfrom(chunk_size)
+
+                if stop_and_wait:
+                    while len(msg) != to_be_received:
+                        msg, addr = self.socket.recvfrom(chunk_size - len(msg))
+                    self.socket.sendto(pack_length(1), addr)
+
                 messages_read += 1
-                bytes_read += len(msg)
+
+                if stop_and_wait:
+                    bytes_read += to_be_received
+                else:
+                    bytes_read += len(msg)
             except:
                 self.socket.settimeout(None)
                 break

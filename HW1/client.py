@@ -42,9 +42,9 @@ def tcp_client(chunk_size, stop_and_wait):
         return bytes_send, messages_send, transmission_time
 
 
-def udp_client(chunk_size):
+def udp_client(chunk_size, stop_and_wait):
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-        s.sendto(pack_length(chunk_size), (HOST, PORT))
+        s.sendto(pack_length_and_stop_and_wait_flag(chunk_size, stop_and_wait), (HOST, PORT))
         bytes_send = 0
         messages_send = 0
 
@@ -53,7 +53,12 @@ def udp_client(chunk_size):
             while True:
                 bytes_read = file.read(chunk_size)
                 if len(bytes_read) != 0:
+                    if stop_and_wait:
+                        s.sendto(pack_length(len(bytes_read)), (HOST, PORT))
                     bytes_send += s.sendto(bytes_read, (HOST, PORT))
+                    if stop_and_wait:
+                        s.settimeout(10)
+                        s.recvfrom(4)
                     messages_send += 1
                 else:
                     break
