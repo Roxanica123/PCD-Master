@@ -3,13 +3,13 @@ import socket
 import sys
 import threading
 
-from helpers import unpack_length
+from helpers import unpack_length, pack_length, unpack_length_and_stop_and_wait_flag
 
 SOCKET_TYPE = {"TCP": socket.SOCK_STREAM, "UDP": socket.SOCK_DGRAM}
 
 
 class Server:
-    HOST = "127.0.0.1"
+    HOST = "0.0.0.0"
     PORT = 55555
 
     def __init__(self, option):
@@ -46,13 +46,23 @@ class TCPServer(Server):
         conn = kwargs["conn"]
         addr = kwargs["addr"]
         print(f"Connected by {addr}", flush=True)
-        chunk_size_bytes = conn.recv(4)
-        chunk_size = unpack_length(chunk_size_bytes)
-        print(chunk_size, flush=True)
+        chunk_size_bytes = conn.recv(5)
+        chunk_size, stop_and_wait = unpack_length_and_stop_and_wait_flag(chunk_size_bytes)
+        print(chunk_size, stop_and_wait, flush=True)
         messages_received = 0
         bytes_received = 0
         while True:
+            if stop_and_wait:
+                to_be_received_bytes = conn.recv(4)
+                if not to_be_received_bytes:
+                    break
+                to_be_received = unpack_length(to_be_received_bytes)
             data = conn.recv(chunk_size)
+            if stop_and_wait:
+                while len(data) != to_be_received:
+                    data = conn.recv(chunk_size - len(data))
+                conn.send(pack_length(1))
+
             if not data:
                 break
             messages_received += 1

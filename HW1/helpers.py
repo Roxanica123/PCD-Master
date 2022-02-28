@@ -11,6 +11,14 @@ def pack_length(length):
     return struct.pack('i', length)
 
 
+def pack_length_and_stop_and_wait_flag(length, stop_and_wait):
+    return struct.pack('i?', length, stop_and_wait)
+
+
+def unpack_length_and_stop_and_wait_flag(message):
+    return struct.unpack('i?', message)
+
+
 def unpack_length(length):
     return struct.unpack('i', length)[0]
 
