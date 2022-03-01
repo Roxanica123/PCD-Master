@@ -70,7 +70,7 @@ class TCPServer(Server):
             else:
                 bytes_received += len(data)
         conn.close()
-        print(messages_received, bytes_received, flush=True)
+        print(self.protocol, messages_received, bytes_received, flush=True)
 
 
 class UDPServer(Server):
@@ -113,7 +113,7 @@ class UDPServer(Server):
             except:
                 self.socket.settimeout(None)
                 break
-        print(messages_read, bytes_read, flush=True)
+        print(self.protocol, messages_read, bytes_read, flush=True)
 
 
 SERVER = {"TCP": TCPServer(), "UDP": UDPServer()}

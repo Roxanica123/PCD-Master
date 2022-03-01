@@ -27,8 +27,8 @@ def unpack_message(length, message):
     return struct.unpack(f'{length}s', message)[0]
 
 
-def get_file_size():
-    with open("dummy_file.txt", "rb") as file:
+def get_file_size(file):
+    with open(file, "rb") as file:
         file.seek(0, os.SEEK_END)
         return file.tell()
 

@@ -1,5 +1,6 @@
 .idea
 venv
 __pycache__
-dummy_file.txt
+dummy_file100.txt
+dummy_file500.txt
 test2.txt
