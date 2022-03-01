@@ -59,8 +59,10 @@ class TCPServer(Server):
                 to_be_received = unpack_length(to_be_received_bytes)
             data = conn.recv(chunk_size)
             if stop_and_wait:
-                while len(data) != to_be_received:
-                    data = conn.recv(chunk_size - len(data))
+                data_rec = len(data)
+                while data_rec != to_be_received:
+                    data = conn.recv(chunk_size)
+                    data_rec += len(data)
                 conn.send(pack_length(1))
             if not data:
                 break
@@ -88,7 +90,7 @@ class UDPServer(Server):
     def read_message(self, **kwargs):
         header = kwargs["header"]
         chunk_size, stop_and_wait = unpack_length_and_stop_and_wait_flag(header)
-        self.socket.settimeout(5)
+        self.socket.settimeout(30)
         bytes_read = 0
         messages_read = 0
         while True:
@@ -96,12 +98,17 @@ class UDPServer(Server):
                 if stop_and_wait:
                     to_be_received_bytes, addr = self.socket.recvfrom(4)
                     to_be_received = unpack_length(to_be_received_bytes)
+                    self.socket.sendto(pack_length(1), addr)
 
                 msg, addr = self.socket.recvfrom(chunk_size)
-
                 if stop_and_wait:
-                    while len(msg) != to_be_received:
-                        msg, addr = self.socket.recvfrom(chunk_size - len(msg))
+                    data_rec = len(msg)
+                    print(data_rec)
+                    while data_rec != to_be_received:
+                        msg, addr = self.socket.recvfrom(chunk_size)
+                        data_rec += len(msg)
+                        print(to_be_received, data_rec)
+                        
                     self.socket.sendto(pack_length(1), addr)
 
                 messages_read += 1
