@@ -3,6 +3,7 @@ import cors from "cors";
 import multer from "multer";
 import morgan from 'morgan';
 import { UploadHandler } from "./handlers/upload_handler";
+import { AuctionHandler } from "./handlers/auction_handler";
 
 
 const app = express();
@@ -39,12 +40,34 @@ app.post(
   }
 );
 
-// app.get("/problems", async function (req: any, res: any) {
-//   res = setCorsOrigin(res);
-//   const result = await new PetHandler().getAllPets()
-//   res.statusCode = result.statusCode;
-//   res.end(result.body);
-// });
+app.post("/start", async function (req: any, res: any) {
+  res = setCorsOrigin(res);
+  const result = await new AuctionHandler(req.body).startAuction();
+  res.statusCode = result.statusCode;
+  res.end(result.body);
+});
+
+const formBodyParser = express.urlencoded({extended: false});
+const jsonBodyParser = express.json();
+
+// List of all messages received by this instance
+const messages: string[] = [];
+
+app.post('/pubsub/push', jsonBodyParser, (req, res) => {
+  if (req.query.token !== "token_super_secret") {
+    res.status(400).send();
+    return;
+  }
+
+  // The message is a unicode string encoded in base64.
+  const message = Buffer.from(req.body.message.data, 'base64').toString(
+    'utf-8'
+  );
+
+  messages.push(message);
+
+  res.status(200).send({messages: messages});
+});
 
 const PORT = 8080;
 
