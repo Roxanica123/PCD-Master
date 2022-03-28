@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SlideShowComponent } from './slide-show/slide-show.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { GoogleauthComponent } from './googleauth/googleauth.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     PetComponent,
     PetViewComponent,
     NavbarComponent,
-    SlideShowComponent
+    SlideShowComponent,
+    GoogleauthComponent
   ],
   imports: [
     BrowserModule,
