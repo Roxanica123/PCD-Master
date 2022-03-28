@@ -14,7 +14,4 @@ export class WhatchListhandler{
     async save(myObject:WatchRegistration) {
        await this.repo.save(myObject);
     }
-
-
-
 }

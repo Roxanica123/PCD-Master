@@ -6,6 +6,8 @@ import { UploadHandler } from "./handlers/upload_handler";
 import { AuctionHandler } from "./handlers/auction_handler";
 import { PetHandler} from "./handlers/pets_handler";
 import { WhatchListhandler } from "./handlers/whatch-list.handler"
+import { Bid, WatchRegistration } from "./types/description_data";
+import { BidHandler } from "./handlers/bid.handler";
 
 const app = express();
 const upload = multer();
@@ -95,21 +97,27 @@ app.get("/auction/:id", async (req:any, res:any) => {
   }
 );
 
-app.post("/products/whatch/:id", async (req:any, res:any) =>{
-  let product_id = req.params.id;
-  let user_id = req.body.id;
+app.post("/options/bid", async (req:any, res:any) => {
 
 
 })
 
-
 app.post("/whatchlist",async (req:any, res:any) => {
-  let body = req.body;
+  let WatchRegistration:WatchRegistration = req.body;
+  new WhatchListhandler().save(WatchRegistration);
+  res.send(200)
+})
 
-  new WhatchListhandler().save(body);
+app.post("/bid",async (req:any, res:any) => {
+  let bid:Bid = req.body
+  const result = await new BidHandler().save(bid)
+  res.send(result)
+})
 
-  res.send("Ok boomer")
-
+app.post("/bid/end",async (req:any, res:any) => {
+  let bid:Bid = req.body
+  const result = await new BidHandler().end(bid)
+  res.send(result)
 })
 
 const formBodyParser = express.urlencoded({extended: false});

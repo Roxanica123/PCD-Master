@@ -14,14 +14,15 @@ export class PetData {
 export class Bid {
 
     public readonly email:string;
-    public readonly ammount:number 
+    public readonly ammount:number; 
+    public readonly userId:number;
+    public readonly productId:number;
     
     constructor(requestBody: any) {        
         this.email = requestBody.email ?? null;
-        if( requestBody.ammount && requestBody.ammount >= 0)
-            this.ammount = requestBody.ammount;
-        else
-            this.ammount = 0
+        this.ammount = requestBody.ammount ?? null;
+        this.userId = requestBody.userId ?? null;
+        this.productId = requestBody.userId ?? null;
 
     }
 }
