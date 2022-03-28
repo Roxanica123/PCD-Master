@@ -115,9 +115,9 @@ app.post("/bid",async (req:any, res:any) => {
   res.send(result)
 })
 
-app.post("/bid/end",async (req:any, res:any) => {
-  let bid:Bid = req.body
-  const result = await new BidHandler().end(bid)
+app.post("/end",async (req:any, res:any) => {
+  let body:Bid = req.body;
+  const result = await new AuctionHandler(req.body).endAuction();
   res.send(result)
 })
 

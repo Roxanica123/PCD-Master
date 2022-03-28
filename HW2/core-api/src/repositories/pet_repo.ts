@@ -44,12 +44,19 @@ export class PetRepository {
     pet[0]["price-estimate"] = price;
     return await this.datastore.update(pet);
   }
-  
-  async getProblemById(id: number): Promise<any> {
-    const key = this.datastore.key([this.kind, id]);
-    const [result] = await this.datastore.get(key);
-    console.log(result)
-    return result;
+
+  async updateAuctionStatus(identifier:string, status:string): Promise<any>{
+    const query = this.datastore.createQuery("Pet").filter("identifier", "=", identifier)
+    const [pet] : Entity = await this.datastore.runQuery(query);
+    pet[0]["auction"] = status;
+    return await this.datastore.update(pet);
+  }
+
+  async getPetByIdentifier(identifier: string): Promise<any> {
+    const query = this.datastore.createQuery("Pet").filter("identifier", "=", identifier)
+    const [pet] : Entity = await this.datastore.runQuery(query);
+    console.log(pet[0]);
+    return pet[0];
   }
 
 }

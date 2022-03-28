@@ -44,3 +44,12 @@ export class Ok implements HttpActionResult {
         this.statusCode = 200;
     }
 }
+
+export class Forbidden implements HttpActionResult {
+    public readonly statusCode: number;
+    public readonly body: string;
+    constructor(body: string = EmptyBody) {
+        this.body = body;
+        this.statusCode = 403;
+    }
+}
