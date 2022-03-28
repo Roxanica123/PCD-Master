@@ -5,10 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './slide-show.component.html',
   styleUrls: ['./slide-show.component.css']
 })
-export class SlideShowComponent implements OnInit{
+export class SlideShowComponent{
   
-  public images: string[] = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-  public ngOnInit(): void {
-  }
+  public images=[
+    "https://images.oyoroomscdn.com/uploads/hotel_image/1097/340ea5ee01acc37f.jpg",
+    "https://images.oyoroomscdn.com/uploads/hotel_image/1097/9b75ea873012234c.jpg",
+    "https://images.oyoroomscdn.com/uploads/hotel_image/1097/d12b3a343f16cb28.jpg",
+    "https://images.oyoroomscdn.com/uploads/hotel_image/1097/ff80cdc13a9832df.jpg"]
 }
