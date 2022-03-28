@@ -87,15 +87,14 @@ app.post('/pubsub/push', jsonBodyParser, (req:any, res:any) => {
     res.status(400).send();
     return;
   }
-
-  // The message is a unicode string encoded in base64.
-  const message = Buffer.from(req.body.message.data, 'base64').toString(
-    'utf-8'
-  );
-
-  messages.push(message);
-
-  res.status(200).send({messages: messages});
+  try{
+    const message = req.body;
+    messages.push(message);
+    res.status(200).send({messages: messages});
+  }
+  catch(err){
+    res.status(500).send({err: err});
+  }
 });
 
 const PORT = 8080;
