@@ -4,7 +4,7 @@ import multer from "multer";
 import morgan from 'morgan';
 import { UploadHandler } from "./handlers/upload_handler";
 import { AuctionHandler } from "./handlers/auction_handler";
-
+import { PetHandler} from "./handlers/pets_handler";
 
 const app = express();
 const upload = multer();
@@ -23,6 +23,35 @@ function setCorsOrigin(res: any) {
   );
   return res;
 }
+
+app.get(
+  "/", async (req:any, res:any) => {
+   res.send("Hello world!")
+  }
+)
+
+app.get(
+  "/pets", async (req:any, res:any) => {
+    let pets = await new PetHandler().getPets()
+    res.send( pets )
+  }
+)
+
+app.get(
+  "/pet/:name", async (req:any, res:any) => {
+
+    let pet_name = req.params.name;
+
+    let pet = await new PetHandler().getPet(pet_name)
+
+    if(pet == undefined) {
+      res.status(204).send()
+      return;
+    }
+
+    res.send( pet )
+  }
+)
 
 app.post(
   "/upload",
@@ -53,7 +82,7 @@ const jsonBodyParser = express.json();
 // List of all messages received by this instance
 const messages: string[] = [];
 
-app.post('/pubsub/push', jsonBodyParser, (req, res) => {
+app.post('/pubsub/push', jsonBodyParser, (req:any, res:any) => {
   if (req.query.token !== "token_super_secret") {
     res.status(400).send();
     return;
@@ -72,5 +101,5 @@ app.post('/pubsub/push', jsonBodyParser, (req, res) => {
 const PORT = 8080;
 
 app.listen(PORT, () => {
-  console.log(`Core API listening at http://0.0.0.0:${PORT}`);
+  console.log(`Core API listening at http://127.0.0.1:${PORT}`);
 });

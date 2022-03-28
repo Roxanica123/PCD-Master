@@ -21,4 +21,18 @@ export class PetRepository {
     await this.datastore.save(petToInsert);
     return petToInsert.key.id;
   }
+
+  async getAllPets(): Promise<PetData[]>{
+    const query = this.datastore.createQuery("Pet")
+    const [pets] = await this.datastore.runQuery(query)
+    return pets;
+  }
+
+  async getPet(name:string): Promise<PetData>{
+    const query = this.datastore.createQuery("Pet").filter("name","=",name)
+    const [pet] = await this.datastore.runQuery(query)
+
+    return pet[0];
+  }
+
 }

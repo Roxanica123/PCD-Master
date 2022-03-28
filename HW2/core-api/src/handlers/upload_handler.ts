@@ -15,6 +15,7 @@ export class UploadHandler {
         const petId = await this.descriptionHandler.savePet();
         if (petId === undefined)
             return new ServerError("Could not save the pet :(.");
+            
         try {
             await this.photosHandler.savePhotos(petId);
         } catch (error) {

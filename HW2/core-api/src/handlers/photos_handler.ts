@@ -1,7 +1,7 @@
 import { FilesRepository, MulterFile } from "../repositories";
 
 export class PhotosHandler {
-    private readonly photos: MulterFile[];;
+    private readonly photos: MulterFile[];
     private readonly filesRepository: FilesRepository;
 
     constructor(photos: MulterFile[]) {
