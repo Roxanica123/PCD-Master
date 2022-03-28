@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { UploadHandler } from "./handlers/upload_handler";
 import { AuctionHandler } from "./handlers/auction_handler";
 import { PetHandler} from "./handlers/pets_handler";
+import { PetRepository } from "./repositories/pet_repo";
 
 const app = express();
 const upload = multer();
@@ -82,18 +83,21 @@ const jsonBodyParser = express.json();
 // List of all messages received by this instance
 const messages: string[] = [];
 
-app.post('/pubsub/push', jsonBodyParser, (req:any, res:any) => {
+app.post('/pubsub/push', jsonBodyParser, async (req:any, res:any) => {
   if (req.query.token !== "token_super_secret") {
     res.status(400).send();
     return;
   }
   try{
-    const message = req.body;
-    messages.push(message);
-    res.status(200).send({messages: messages});
+    const message:any = req.body.message.data ? Buffer.from(req.body.message.data, 'base64').toString():undefined;
+    if(message!=undefined){
+      const messageObj  = JSON.parse(message).data;
+      const result = await new PetRepository().updatePrice(messageObj.id, messageObj.price);
+      res.status(204).send();
+    }
   }
   catch(err){
-    res.status(500).send({err: err});
+    res.status(500).send();
   }
 });
 

@@ -20,7 +20,7 @@ export class PetRepository {
       key: petKey,
       data: pet,
     };
-    
+
     await this.datastore.save(petToInsert);
     return petToInsert.key.id;
   }
@@ -37,4 +37,12 @@ export class PetRepository {
 
     return pet[0];
   }
+
+  async updatePrice(identifier:string, price:number): Promise<any>{
+    const query = this.datastore.createQuery("Pet").filter("identifier", "=", identifier)
+    const [pet] : Entity = await this.datastore.runQuery(query);
+    pet[0]["price-estimate"] = price;
+    return await this.datastore.update(pet);
+  }
+
 }
