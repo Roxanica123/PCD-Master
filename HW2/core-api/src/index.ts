@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { UploadHandler } from "./handlers/upload_handler";
 import { AuctionHandler } from "./handlers/auction_handler";
 import { PetHandler} from "./handlers/pets_handler";
+import { WhatchListhandler } from "./handlers/whatch-list.handler"
 
 const app = express();
 const upload = multer();
@@ -48,7 +49,6 @@ app.get(
       res.status(204).send()
       return;
     }
-
     res.send( pet )
   }
 )
@@ -75,6 +75,42 @@ app.post("/start", async function (req: any, res: any) {
   res.statusCode = result.statusCode;
   res.end(result.body);
 });
+
+app.post("/save",  async function (req: any, res: any) {
+  
+    
+});
+
+app.get("/auction/:id", async (req:any, res:any) => {
+
+    let id = req.params.id;
+
+    let result = await new AuctionHandler({"petId" : ""}).getById(id)
+
+    if(res == undefined) {
+      res.status(204).send()
+      return;
+    }
+    res.send( result )
+  }
+);
+
+app.post("/products/whatch/:id", async (req:any, res:any) =>{
+  let product_id = req.params.id;
+  let user_id = req.body.id;
+
+
+})
+
+
+app.post("/whatchlist",async (req:any, res:any) => {
+  let body = req.body;
+
+  new WhatchListhandler().save(body);
+
+  res.send("Ok boomer")
+
+})
 
 const formBodyParser = express.urlencoded({extended: false});
 const jsonBodyParser = express.json();

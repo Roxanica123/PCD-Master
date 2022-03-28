@@ -2,7 +2,6 @@
 import { PetRepository } from "../repositories/pet_repo";
 import { PetData } from "../types/description_data";
 
-
 export class DescriptionHandler {
     private readonly description: PetData;
     private readonly descriptionRepository: PetRepository;

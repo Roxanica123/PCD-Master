@@ -4,6 +4,7 @@ import { PetData } from "../types/description_data";
 export class PetRepository {
   private readonly datastore;
   private readonly kind = "Pet";
+
   constructor() {
     this.datastore = new Datastore();
   }
@@ -31,8 +32,14 @@ export class PetRepository {
   async getPet(name:string): Promise<PetData>{
     const query = this.datastore.createQuery("Pet").filter("name","=",name)
     const [pet] = await this.datastore.runQuery(query)
-
     return pet[0];
+  }
+
+  async getProblemById(id: number): Promise<any> {
+    const key = this.datastore.key([this.kind, id]);
+    const [result] = await this.datastore.get(key);
+    console.log(result)
+    return result;
   }
 
 }
