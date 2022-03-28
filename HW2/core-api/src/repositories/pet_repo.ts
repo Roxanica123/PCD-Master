@@ -55,7 +55,6 @@ export class PetRepository {
   async getPetByIdentifier(identifier: string): Promise<any> {
     const query = this.datastore.createQuery("Pet").filter("identifier", "=", identifier)
     const [pet] : Entity = await this.datastore.runQuery(query);
-    console.log(pet[0]);
     return pet[0];
   }
 

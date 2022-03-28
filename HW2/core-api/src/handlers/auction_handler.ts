@@ -1,4 +1,5 @@
 import { AuctionRepo } from "../repositories/auction_repo";
+import { BidRepo } from "../repositories/bid.repo";
 import { PetRepository } from "../repositories/pet_repo";
 import { Created, Forbidden, HttpActionResult, ServerError } from "../types";
 import { Auction } from "../types/description_data";
@@ -34,11 +35,13 @@ export class AuctionHandler {
     async endAuction(): Promise<HttpActionResult> {
         if ((await this.descriptionRepository.getPetByIdentifier(this.petId)).email == this.email) {
             this.descriptionRepository.updateAuctionStatus(this.petId, "ended");
+            const winningBid = await new BidRepo().getWinningBid(this.petId);
             const result: string | undefined = await EventHandler.instance.publishMessage("auction-notifications", JSON.stringify({
                 "productId": this.petId,
-                "type": "end-bid"
-            }));
+                "type": "end-bid",
+                "winningBid": winningBid
 
+            }));
             if (result == undefined) {
                 return new ServerError("Could not publish message");
             }

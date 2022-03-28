@@ -11,7 +11,6 @@ export class EventHandler {
 
     async publishMessage(topicId: string, data: any): Promise<string | undefined> {
         
-        console.log(data);
         const dataBuffer = Buffer.from(data);
         
         try {
