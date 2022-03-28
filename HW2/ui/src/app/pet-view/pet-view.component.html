@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+    </mat-card-header>
+        <table id="singlePet">
+            <td id="imgtd">
+                <div flex="">
+                    <img mat-card-image id="img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="A">
+                </div>
+            </td>
+            <td id="petData"> 
+                    <table >
+                        <tr>
+                            <td id="name"><strong>Lola</strong></td>
+                            <td id="age">Age: 1</td>
+                        </tr>
+                        <tr>
+                            <mat-card-content>
+                                <p>
+                                    descriere
+                                </p>
+                            </mat-card-content>
+                        </tr>
+                        <tr>
+                            <div  fxLayout="column" fxLayoutAlign="center center">
+                                <div class="selection-item">
+                                    <button mat-raised-button color="accent" id="bid">Bid!</button>
+                                </div>
+                            </div>
+                        </tr>
+                    </table>
+            </td>
+        </table>
+</mat-card>
