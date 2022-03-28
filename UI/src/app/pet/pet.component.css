@@ -1,0 +1,38 @@
+.selection-item {
+    margin: 16px;
+}
+
+.error {
+    color: red;
+}
+
+#img{
+    width: 100%;
+    height: 80%;
+    padding-left: 20px;
+}
+
+#singlePet{
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+}
+
+#title{
+    width: 50%;
+    padding: 10px;
+}
+
+td{
+    padding-bottom: 10px;
+}
+
+#name{
+    font-size: 30px;
+    text-align: left;
+    width: 305px;
+}
+
+#age{
+    text-align: right;
+}
