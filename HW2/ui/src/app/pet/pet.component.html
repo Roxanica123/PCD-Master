@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<mat-card *ngIf="rate !== undefined" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+    </mat-card-header>
+
+    <table id="singlePet">
+        <tr>
+            <div flex="">
+                <img mat-card-image id="img" src={{imgLink}} alt={{altName}}>
+            </div>
+        </tr>
+        <tr>
+            <div flex="">
+                <td id="name"><strong>{{name}}</strong></td>
+                <td id="age">Age: {{age}}</td>
+            </div>
+        </tr>
+        <tr>
+            <div flex="">
+                <mat-card-content>
+                <p>
+                    {{description}}
+                </p>
+                </mat-card-content>
+                <form [formGroup]="rate">
+                    <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                    <!-- <div>Rating: {{rate.value.rating}}</div> -->
+                </form>
+            </div>
+        </tr>
+        <tr>
+            <div  fxLayout="column" fxLayoutAlign="center center">
+                <div class="selection-item">
+                    <button mat-raised-button color="accent" [routerLink]="['view']" (click)="onClick()">Adopt me!</button>
+                </div>
+            </div>
+        </tr>
+    </table>
+</mat-card>
