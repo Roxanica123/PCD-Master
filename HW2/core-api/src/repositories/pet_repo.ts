@@ -1,4 +1,5 @@
 import { Datastore, Entity } from "@google-cloud/datastore";
+import { getUuid } from "../handlers/uuid_gen";
 import { PetData } from "../types/description_data";
 
 export class PetRepository {
@@ -14,25 +15,26 @@ export class PetRepository {
 
   async savePet(pet: PetData) {
     const petKey = this.datastore.key(this.kind);
+    pet.identifier = getUuid();
     const petToInsert = {
       key: petKey,
       data: pet,
     };
+    
     await this.datastore.save(petToInsert);
     return petToInsert.key.id;
   }
 
-  async getAllPets(): Promise<PetData[]>{
+  async getAllPets(): Promise<PetData[]> {
     const query = this.datastore.createQuery("Pet")
     const [pets] = await this.datastore.runQuery(query)
     return pets;
   }
 
-  async getPet(name:string): Promise<PetData>{
-    const query = this.datastore.createQuery("Pet").filter("name","=",name)
+  async getPet(name: string): Promise<PetData> {
+    const query = this.datastore.createQuery("Pet").filter("name", "=", name)
     const [pet] = await this.datastore.runQuery(query)
 
     return pet[0];
   }
-
 }

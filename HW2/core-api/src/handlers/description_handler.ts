@@ -19,6 +19,7 @@ export class DescriptionHandler {
     async savePet(): Promise<string | undefined> {
         try {
             const id: string | undefined = await this.descriptionRepository.savePet(this.description);
+            console.log(id);
             return id;
         } catch (error) {
             console.log(error)
