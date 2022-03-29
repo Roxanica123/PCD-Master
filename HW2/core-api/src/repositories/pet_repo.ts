@@ -23,7 +23,7 @@ export class PetRepository {
     };
 
     await this.datastore.save(petToInsert);
-    return petToInsert.key.id;
+    return pet.identifier;
   }
 
   async getAllPets(): Promise<PetData[]> {
