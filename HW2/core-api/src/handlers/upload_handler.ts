@@ -11,7 +11,7 @@ export class UploadHandler {
     }
 
     async handle(): Promise<HttpActionResult> {
-
+    
         const petId = await this.descriptionHandler.savePet();
         if (petId === undefined)
             return new ServerError("Could not save the pet :(.");

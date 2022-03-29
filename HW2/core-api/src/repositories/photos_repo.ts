@@ -11,7 +11,7 @@ export class FilesRepository {
         this.bucket = this.storage.bucket(this.bucketName);
     }
     async saveFile(multerFile: MulterFile, saveLocation: string) {
-        const file = this.bucket.file(saveLocation + multerFile.originalname);
+        const file = this.bucket.file(saveLocation + "1.png");
         await file.save(multerFile.buffer);
     }
 }
