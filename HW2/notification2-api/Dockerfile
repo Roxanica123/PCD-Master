@@ -17,6 +17,7 @@ FROM build AS publish
 RUN dotnet publish "notification2-api.csproj" -c Release -o /app/publish
 
 FROM base AS final
-WORKDIR /app
+ENV ASPNETCORE_URLS
+WORKDIR /app=https://+:8080;http://+:8080
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "notification2-api.dll"]
