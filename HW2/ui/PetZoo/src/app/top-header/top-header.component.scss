@@ -1,0 +1,40 @@
+
+.header-container{
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(134, 0, 0, 0.719);
+
+    .title-wrapper{
+        padding: 20px;
+    }
+
+    .buttons-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        a{
+            padding: 20px;
+        }
+    }
+
+}
+
+h1 {
+	font-size: calc(2.8em + 2.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 1rem 0 0 4.5rem;
+	text-shadow: .022em .022em .022em #111;
+	color: #fff;
+}
+
+.mat-icon {
+    gap: 1rem;
+    transform: scale(2);
+    color: rgb(255, 255, 255);
+ }

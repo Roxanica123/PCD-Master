@@ -25,7 +25,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { HttpClientModule } from '@angular/common/http';
-import { PetViewComponent } from './pet-view/pet-view.component'
+import { PetViewComponent } from './pet-view/pet-view.component';
+import { TopHeaderComponent } from './top-header/top-header.component'
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PetViewComponent } from './pet-view/pet-view.component'
     AppComponent,
     PetFormComponent,
     HomePageComponent,
-    PetViewComponent
+    PetViewComponent,
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,
