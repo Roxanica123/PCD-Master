@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYobBBIwPSkiycAENfnT9NwAAAAACAAAAAAAQZgAAAAEAACAAAAAYl6cJbG1FfL1uCKyKD1x4mc0qxdR41OFXoY6guXjG0gAAAAAOgAAAAAIAACAAAAAonI8JMh8wAl0n30kup34A4CT8QYAMYxyIMc5IIQL834AAAAAfsBmKoxxwKNZnJLIRuyQEBGpvFGASxIrz3m1BUwJGfo7L6YmXI/lsCIGzsbtPfpY8AeKr4pLJUQ4fIokhOxHH6IYjgOAO5ui1STf8pP4N7gTXp4G4pjNccGo4fY4QUSxDS+/ZYt+lF7tVBHhCNxTuXuX3c0AvL3C2XDxDZAVhvEAAAADP0iskR6rZ1QzOoPqh5KRfQmHP1npbCHy5gsnG2RAe477UnZI10obs5LPS47hzok792MNiZbqurKNh0CYFdZdu</EncryptedPassword>
+    <_PublishTargetUrl>ftp://waws-prod-db3-209.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
+    <History>True|2022-03-29T08:57:49.9233738Z;False|2022-03-29T11:57:10.0694005+03:00;True|2022-03-29T05:15:05.9346806+03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="app.yaml">
+      <publishTime>03/29/2022 04:31:49</publishTime>
+    </File>
+    <File Include="appsettings.Development.json">
+      <publishTime>03/29/2022 04:31:49</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>03/29/2022 04:31:49</publishTime>
+    </File>
+    <File Include="Google.Api.CommonProtos.dll">
+      <publishTime>04/20/2021 12:32:44</publishTime>
+    </File>
+    <File Include="Google.Api.Gax.dll">
+      <publishTime>08/16/2021 13:50:18</publishTime>
+    </File>
+    <File Include="Google.Api.Gax.Grpc.dll">
+      <publishTime>08/16/2021 13:50:26</publishTime>
+    </File>
+    <File Include="Google.Api.Gax.Grpc.GrpcCore.dll">
+      <publishTime>08/16/2021 13:50:28</publishTime>
+    </File>
+    <File Include="Google.Apis.Auth.dll">
+      <publishTime>07/28/2021 13:12:50</publishTime>
+    </File>
+    <File Include="Google.Apis.Auth.PlatformServices.dll">
+      <publishTime>07/28/2021 13:12:50</publishTime>
+    </File>
+    <File Include="Google.Apis.Core.dll">
+      <publishTime>07/28/2021 13:12:42</publishTime>
+    </File>
+    <File Include="Google.Apis.dll">
+      <publishTime>07/28/2021 13:12:46</publishTime>
+    </File>
+    <File Include="Google.Cloud.Datastore.V1.dll">
+      <publishTime>08/18/2021 13:25:40</publishTime>
+    </File>
+    <File Include="Google.Protobuf.dll">
+      <publishTime>04/08/2021 12:48:46</publishTime>
+    </File>
+    <File Include="Grpc.Auth.dll">
+      <publishTime>05/25/2021 03:14:04</publishTime>
+    </File>
+    <File Include="Grpc.Core.Api.dll">
+      <publishTime>06/22/2021 00:12:00</publishTime>
+    </File>
+    <File Include="Grpc.Core.dll">
+      <publishTime>06/22/2021 00:11:54</publishTime>
+    </File>
+    <File Include="libgrpc_csharp_ext.x64.so">
+      <publishTime>06/21/2021 10:27:30</publishTime>
+    </File>
+    <File Include="Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>09/13/2019 02:28:44</publishTime>
+    </File>
+    <File Include="Microsoft.OpenApi.dll">
+      <publishTime>08/29/2020 20:14:12</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>11/09/2019 00:56:44</publishTime>
+    </File>
+    <File Include="notification2-api">
+      <publishTime>03/29/2022 11:57:37</publishTime>
+    </File>
+    <File Include="notification2-api.deps.json">
+      <publishTime>03/29/2022 11:52:37</publishTime>
+    </File>
+    <File Include="notification2-api.dll">
+      <publishTime>03/29/2022 11:57:37</publishTime>
+    </File>
+    <File Include="notification2-api.exe">
+      <publishTime>03/29/2022 11:56:30</publishTime>
+    </File>
+    <File Include="notification2-api.pdb">
+      <publishTime>03/29/2022 11:57:37</publishTime>
+    </File>
+    <File Include="notification2-api.runtimeconfig.json">
+      <publishTime>03/29/2022 11:57:37</publishTime>
+    </File>
+    <File Include="runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so">
+      <publishTime>06/21/2021 10:27:28</publishTime>
+    </File>
+    <File Include="runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so">
+      <publishTime>06/21/2021 10:27:30</publishTime>
+    </File>
+    <File Include="runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib">
+      <publishTime>06/21/2021 10:27:30</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/grpc_csharp_ext.x64.dll">
+      <publishTime>06/22/2021 00:11:54</publishTime>
+    </File>
+    <File Include="runtimes/win-x86/native/grpc_csharp_ext.x86.dll">
+      <publishTime>06/22/2021 00:11:56</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.Swagger.dll">
+      <publishTime>10/16/2021 15:54:10</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
+      <publishTime>10/16/2021 15:54:36</publishTime>
+    </File>
+    <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
+      <publishTime>10/16/2021 15:54:30</publishTime>
+    </File>
+    <File Include="System.Linq.Async.dll">
+      <publishTime>09/26/2019 00:47:54</publishTime>
+    </File>
+    <File Include="System.Net.WebSockets.WebSocketProtocol.dll">
+      <publishTime>06/06/2018 13:29:04</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>03/29/2022 11:57:01</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
