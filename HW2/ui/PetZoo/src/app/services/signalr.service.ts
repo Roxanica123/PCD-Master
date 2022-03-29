@@ -22,12 +22,12 @@ export class SignalRService {
         this.connection.on("price-updated", data => {
             // data: { price, id }
             const notif = JSON.parse(data);
-            console.log(notif);
-            this.snack.info(`We have updated out suggested price for ${this.getById(notif.productId).description} with price ${notif.data.price}`);
+            console.log("price-updated", notif);
+            this.snack.info(`We have updated out suggested price for ${this.getById(notif.data.id).description} with price ${notif.data.price}`);
         });
 
         this.connection.on("bidding-info", data => {
-            console.log(data);
+            console.log("bidding-info", data);
             const notif = JSON.parse(data);
             switch (notif.type) {
                 case "new-bid": this.snack.info(`We have a new bid of ${notif.productPrice} for ${this.getById(notif.productId).description}`);
@@ -38,7 +38,7 @@ export class SignalRService {
         });
 
         this.connection.on("auction-started", data => {
-            console.log(data);
+            console.log("auction-started", data);
             this.snack.info(`Auction started for pet ${this.getById(data.productId).description}`);
         });
     }
