@@ -112,7 +112,7 @@ app.post("/whatchlist",async (req:any, res:any) => {
 app.post("/bid",async (req:any, res:any) => {
   let bid:Bid = req.body
   const result = await new BidHandler().save(bid)
-  res.send(result)
+  res.status(result.statusCode).send(result.body);
 })
 
 app.post("/end",async (req:any, res:any) => {
