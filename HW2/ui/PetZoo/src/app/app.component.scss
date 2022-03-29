@@ -1,1 +1,55 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.user-info {
+    margin: 20px;
+  }
+  
+  .user-info-container {
+    width: 50%;
+    height: 100%;
+    align-self: center;
+    align-items: center;
+  }
+  
+  .site-label {
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  
+  .buy-tokens-container{
+    align-items: center;
+  }
+  .tokens-container{
+    align-items: center;
+    div{
+      padding: 10px;
+    }
+  }
+
+  .button-container {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 90%;
+}   
+
+.button{
+
+}
+
+.demo-table {
+    width: 90%;
+  }
+  
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }

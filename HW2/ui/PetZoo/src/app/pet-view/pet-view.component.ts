@@ -21,7 +21,8 @@ export class PetViewComponent implements OnInit {
 
   pets:PetModel[] = [];
 
-
+  public readonly basePhotoURL = "https://storage.googleapis.com/pets-photos/"
+  public readonly photo ="/1.png"
 
   constructor(private http: HttpClient) { 
     this.http.get<PetModel[]>("https://winter-justice-345019.ew.r.appspot.com/pets").subscribe( data => {

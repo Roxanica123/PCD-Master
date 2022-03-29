@@ -1,14 +1,10 @@
-<p>pet-view works!</p>
+<div fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-card *ngFor="let pet of pets" class="pet-cell m18">
 
-<div *ngFor="let pet of pets" class="fxLayoutGap">
-
-
-  
-        <mat-card>
-            <mat-card-title>
-               
-            </mat-card-title>
-            <mat-card-content>
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+                <img src= {{basePhotoURL + pet.identifier + photo}} width="300" height="250" alt="upsi...">
+   
                 <p *ngIf="pet.description">
                     Description:
                     {{ pet.description }}
@@ -18,7 +14,17 @@
                     Price: {{pet['price-estimate']}}
                 </p>
 
-            </mat-card-content>
-        </mat-card>
-   
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div class="selection-item">
+                        <button type="button" mat-raised-button color="primary">Bid for it</button>
+                    </div>
+
+                    <div class="selection-item">
+                        <button type="button" mat-raised-button color="accent"> Subscribe</button>
+                    </div>
+                </div>
+         </div>
+
+        </mat-card-content>
+    </mat-card>
 </div>
