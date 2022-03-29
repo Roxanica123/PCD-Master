@@ -1,0 +1,24 @@
+<p>pet-view works!</p>
+
+<div *ngFor="let pet of pets" class="fxLayoutGap">
+
+
+  
+        <mat-card>
+            <mat-card-title>
+               
+            </mat-card-title>
+            <mat-card-content>
+                <p *ngIf="pet.description">
+                    Description:
+                    {{ pet.description }}
+                </p>
+
+                <p *ngIf="pet['price-estimate']">
+                    Price: {{pet['price-estimate']}}
+                </p>
+
+            </mat-card-content>
+        </mat-card>
+   
+</div>
