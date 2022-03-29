@@ -39,7 +39,7 @@ export class SignalRService {
 
         this.connection.on("auction-started", data => {
             console.log(data);
-            this.snack.info(`Auction started for pet ${data.productId}`);
+            this.snack.info(`Auction started for pet ${this.getById(data.productId).description}`);
         });
     }
 
