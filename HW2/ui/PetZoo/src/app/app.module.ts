@@ -24,13 +24,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { PetViewComponent } from './pet-view/pet-view.component';
+import { TopHeaderComponent } from './top-header/top-header.component'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PetFormComponent,
-    HomePageComponent
+    HomePageComponent,
+    PetViewComponent,
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,
