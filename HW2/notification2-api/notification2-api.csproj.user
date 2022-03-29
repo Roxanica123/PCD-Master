@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>notification2_api</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>K:\repos\roxana\PCD-Master\HW2\notification2-api\Properties\PublishProfiles\zoo-notifications - FTP.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>K:\repos\roxana\PCD-Master\HW2\notification2-api\Properties\PublishProfiles\zoo-notifications - Zip Deploy1.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

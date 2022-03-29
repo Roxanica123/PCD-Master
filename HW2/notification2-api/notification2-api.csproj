@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Datastore.V1" Version="3.3.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.20.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
@@ -19,6 +20,12 @@
 
   <ItemGroup>
     <Folder Include="Hubs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="google_setup.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -68,6 +68,8 @@ public class NotificationsController : ControllerBase
 
     private async Task<IEnumerable<string>> GetConnections(string productId)
     {
+        return connections.Connections.Select(x => x.Key);
+
         var users = await store.GetForProduct(productId);
         var userIds = users.Select(x => x.UserId).ToList();
 

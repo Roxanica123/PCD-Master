@@ -4,3 +4,5 @@ obj
 **/bin
 **/obj
 *.DotSettings
+PublishProfiles
+google_setup.json
