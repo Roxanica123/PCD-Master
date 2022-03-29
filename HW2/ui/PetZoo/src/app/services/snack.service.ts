@@ -10,14 +10,14 @@ export class SnackService {
 
     public info(message: string): void {
         this._snackBar.open(message, "", {
-            duration: 4000,
+            duration: 7000,
             panelClass: ["snack-info"]
         });
     }
 
     public error(message: string): void {
         this._snackBar.open(message, "", {
-            duration: 4000,
+            duration: 7000,
             panelClass: ["snack-error"]
         });
     }

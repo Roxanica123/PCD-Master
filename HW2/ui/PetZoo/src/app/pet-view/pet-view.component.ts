@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface PetModel{
-  name:string;
-  identifier:string;
-  description:string;
-  "price-estimate":number;
-  email:string
-  auction:string
-
-}
-
+import { PetService } from '../services/pet.service';
+import { PetModel } from '../services/types';
 
 @Component({
   selector: 'app-pet-view',
@@ -19,17 +10,17 @@ interface PetModel{
 })
 export class PetViewComponent implements OnInit {
 
-  pets:PetModel[] = [];
+  pets: PetModel[] = [];
 
   public readonly basePhotoURL = "https://storage.googleapis.com/pets-photos/"
-  public readonly photo ="/1.png"
+  public readonly photo = "/1.png"
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private readonly petService: PetService) {
 
   }
 
-  photoURL(id:string){
-    if ( id == null ){
+  photoURL(id: string) {
+    if (id == null) {
       return "https://www.publicdomainpictures.net/pictures/280000/nahled/not-found-image-15383864787lu.jpg"
     }
 
@@ -38,11 +29,7 @@ export class PetViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<PetModel[]>("https://winter-justice-345019.ew.r.appspot.com/pets").subscribe( data => {
-      this.pets = data
-      console.table(data)
-    })
-   
+    this.petService.subject.subscribe(pets => this.pets = pets);
   }
 
 }
