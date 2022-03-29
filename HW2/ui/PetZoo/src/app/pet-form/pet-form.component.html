@@ -1,0 +1,39 @@
+<mat-card >
+
+    <form #createForm="ngForm">
+        <div fxLayout="column" fxLayoutAlign="space-around center" style="margin-top:2em;">
+            
+                        
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label> Name </mat-label>
+                <textarea required matInput placeholder=" " name="name"
+                    [(ngModel)]="name"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label> Description </mat-label>
+                <textarea required matInput placeholder=" " name="description"
+                    [(ngModel)]="description"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label> Email </mat-label>
+                <input type="email" required matInput placeholder=" " name="email"
+                    [(ngModel)]="email">
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+                <ngx-mat-file-input [multiple]="true" [(ngModel)]="photos" name="photos">
+                </ngx-mat-file-input>
+             </mat-form-field>
+
+        
+
+            <button type="button" mat-raised-button color="accent" (click)="submit(createForm)">Add new task!</button>
+        </div>
+    </form>
+
+</mat-card>
+
