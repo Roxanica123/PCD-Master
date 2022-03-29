@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PetService } from '../services/pet.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -20,7 +21,7 @@ export class PetFormComponent implements OnInit {
 
   accelt: any = undefined;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly service: PetService) { }
 
   ngOnInit(): void {
   }
@@ -35,10 +36,8 @@ export class PetFormComponent implements OnInit {
     }
 
     console.log(data)
+    this.service.create(data).subscribe(data => console.log(data));
 
-    this.http.post("https://winter-justice-345019.ew.r.appspot.com/upload", data ).subscribe( data => 
-      console.log(data))
-   
     ngForm.reset();
   }
 
