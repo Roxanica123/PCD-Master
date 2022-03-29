@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-pet-form',
@@ -8,20 +10,37 @@ import { NgForm } from '@angular/forms';
 })
 export class PetFormComponent implements OnInit {
 
-  
+  public formData: FormData = new FormData();
+
+
   description: string = "";
+  email: string = "";
+  name: string = "";
+  photos: any;
 
-  freelancerReward: Number = 1;
-  evaluatorReward: Number = 0;
+  accelt: any = undefined;
 
-  domainExpertise: string = "";
-
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  public async submit(ngForm: NgForm) { }
+  public async submit(ngForm: NgForm) {
+
+    const data = {
+      "description": this.description,
+      "email": this.email,
+      "name": this.name,
+      "photos": this.photos
+    }
+
+    console.log(data)
+
+    this.http.post("https://winter-justice-345019.ew.r.appspot.com/upload", data ).subscribe( data => 
+      console.log(data))
+   
+    ngForm.reset();
+  }
+
 
 }
