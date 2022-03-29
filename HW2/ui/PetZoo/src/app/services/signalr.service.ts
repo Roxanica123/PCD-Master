@@ -27,12 +27,13 @@ export class SignalRService {
         });
 
         this.connection.on("bidding-info", data => {
-            console.log("bidding-info", data);
             const notif = JSON.parse(data);
+            console.log("bidding-info", notif);
+
             switch (notif.type) {
                 case "new-bid": this.snack.info(`We have a new bid of ${notif.productPrice} for ${this.getById(notif.productId).description}`);
                     break;
-                case "end-bid": this.snack.info(`We have a winner for ${this.getById(notif.productId).description}. It has been auctioned for ${notif.winningBid.amount} to ${notif.winningBid.email}`);
+                case "end-bid": this.snack.info(`We have a winner for ${this.getById(notif.productId).description}`);
                     break;
             }
         });
