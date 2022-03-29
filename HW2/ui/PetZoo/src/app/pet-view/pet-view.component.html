@@ -1,30 +1,31 @@
 <div fxLayout="column" fxLayoutAlign="space-around center">
-    <mat-card *ngFor="let pet of pets" class="pet-cell m18">
+    <div *ngFor="let pet of pets" class="pet-cell m2">
+        <mat-card >
+            <mat-card-content>
+                <div fxLayout="column" fxLayoutAlign="space-around center">
+                    <img src={{photoURL(pet.identifier)}} width="300" height="250" alt="upsi...">
 
-        <mat-card-content>
-            <div fxLayout="column" fxLayoutAlign="space-around center">
-                <img src= {{basePhotoURL + pet.identifier + photo}} width="300" height="250" alt="upsi...">
-   
-                <p *ngIf="pet.description">
-                    Description:
-                    {{ pet.description }}
-                </p>
+                    <p *ngIf="pet.description">
+                        Description:
+                        {{ pet.description }}
+                    </p>
 
-                <p *ngIf="pet['price-estimate']">
-                    Price: {{pet['price-estimate']}}
-                </p>
+                    <p *ngIf="pet['price-estimate']">
+                        Price: {{pet['price-estimate']}}
+                    </p>
 
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <div class="selection-item">
-                        <button type="button" mat-raised-button color="primary">Bid for it</button>
-                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <div class="selection-item">
+                            <button type="button" mat-raised-button color="primary">Bid for it</button>
+                        </div>
 
-                    <div class="selection-item">
-                        <button type="button" mat-raised-button color="accent"> Subscribe</button>
+                        <div class="selection-item">
+                            <button type="button" mat-raised-button color="accent"> Subscribe</button>
+                        </div>
                     </div>
                 </div>
-         </div>
 
-        </mat-card-content>
-    </mat-card>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

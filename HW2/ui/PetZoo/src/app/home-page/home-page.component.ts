@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.signalR.connect("123");
+    //this.signalR.connect("123");
   }
 
 }
