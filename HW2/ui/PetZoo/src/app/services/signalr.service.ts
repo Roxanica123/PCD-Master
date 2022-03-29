@@ -1,5 +1,6 @@
 import { Inject, Injectable } from "@angular/core";
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
+import { SnackService } from "./snack.service";
 
 @Injectable({
     providedIn: "root"
@@ -7,7 +8,7 @@ import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 export class SignalRService {
     private connection: HubConnection | undefined;
 
-    constructor() { }
+    constructor(private readonly snack: SnackService) { }
 
     public connect(userId: string) {
         this.connection = new HubConnectionBuilder()
@@ -16,6 +17,8 @@ export class SignalRService {
 
         this.connection.start();
 
-        this.connection.on("price-updated", data => console.log("info from me", data));
+        this.connection.on("price-updated", data => this.snack.info(data));
+        this.connection.on("bidding-info", data => this.snack.info(data));
+        this.connection.on("auction-started", data => this.snack.info(data));
     }
 }
