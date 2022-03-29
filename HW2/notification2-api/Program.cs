@@ -22,11 +22,10 @@ builder.Services
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app
     .Use(async (context, func) =>
@@ -41,7 +40,7 @@ app
         await func(context);
     })
     .UseCors(policyBuilder => policyBuilder
-        .WithOrigins("http://localhost:4200")
+        .WithOrigins("http://localhost:4200", "https://localhost", "https://zoo-notifications.azurewebsites.net")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials())
