@@ -180,13 +180,11 @@ export default class TodoListController extends WebcController {
         )
     }
 
-    deleteListItem(element) {
-        if (!this.todoIsValid(element)) {
+    deleteListItem(todo) {
+        if (!this.todoIsValid(todo)) {
             return;
         }
-        let items = this.model.items
-        let itemIndex = items.findIndex((todo) => todo.input.name === element.input.name)
-        this.TodoManagerService.removeToDo(element, (err, data) => {
+        this.TodoManagerService.removeToDo(todo, (err, data) => {
             if (err) {
                 return this._handleError(err);
             }
