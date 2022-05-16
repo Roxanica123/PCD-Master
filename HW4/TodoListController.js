@@ -1,6 +1,6 @@
-import {getTodoManagerServiceInstance} from "../services/TodoManagerService.js";
+import { getTodoManagerServiceInstance } from "../services/TodoManagerService.js";
 
-const {WebcController} = WebCardinal.controllers;
+const { WebcController } = WebCardinal.controllers;
 
 export default class TodoListController extends WebcController {
     constructor(...props) {
@@ -53,6 +53,11 @@ export default class TodoListController extends WebcController {
         const deleteElement = this.getElementByTag('deleteItem');
         if (deleteElement) {
             deleteElement.addEventListener("click", this._deleteItems);
+        }
+
+        const sortElement = this.getElementByTag('sortItem');
+        if (sortElement) {
+            sortElement.addEventListener("click", this._sortItems);
         }
     }
 
@@ -161,7 +166,7 @@ export default class TodoListController extends WebcController {
     editListItem(todo) {
         if (!this.todoIsValid(todo)) {
             return;
-        }  
+        }
         this.TodoManagerService.editToDo(todo, (err, data) => {
             if (err) {
                 return this._handleError(err);
@@ -170,20 +175,27 @@ export default class TodoListController extends WebcController {
     }
 
     _deleteItems = (event) => {
+
+        // Find the wanted element and change the value of the checked property
         let items = this.model.items
+        console.log("_deleteItems")
         items.forEach(
-            elment =>{
-                if(elment.checkbox.checked){
+            elment => {
+                if (elment.checkbox.checked) {
                     this.deleteListItem(elment);
                 }
             }
         )
+
+        this.model.items = this.model.items.filter(elment => !elment.checkbox.checked)
     }
 
     deleteListItem(todo) {
+        console.log("deleteListItem")
         if (!this.todoIsValid(todo)) {
             return;
         }
+
         this.TodoManagerService.removeToDo(todo, (err, data) => {
             if (err) {
                 return this._handleError(err);
@@ -191,10 +203,31 @@ export default class TodoListController extends WebcController {
         })
     }
 
+    _sortItems = () => {
+        let query = "value like " + this.getElementByTag("sort-query-text-area").value
+        let sort = "asc"
+
+        if (this.getElementByTag("asc-dsc").checked) {
+            sort = "dsc"
+        }
+
+        console.log(query)
+
+        this.TodoManagerService.filterToDos(query, sort, (err, data) => {
+            this.items = this.setItemsClean(data)
+            console.log(this.items)
+        });
+
+
+    }
+
+
     setItemsClean = (newItems) => {
         if (newItems) {
             // Set the model fresh, without proxies
             this.model.items = JSON.parse(JSON.stringify(newItems))
+            this.model.items = this.model.items.filter(value => value.__deleted != true)
+            console.log(this.model.items)
         } else {
             this.model.items = [];
         }

@@ -7,11 +7,12 @@ class TodoManagerService {
     }
 
     createToDo(todo, callback) {
+        todo.value  = todo.input.value
         this.enclave.insertRecord(TO_DO_TABLE, todo.input.name, todo, callback);
     }
 
     removeToDo(todo, callback) {
-      this.enclave.deleteRecord(TO_DO_TABLE,todo.input.name, callback);
+        this.enclave.deleteRecord(TO_DO_TABLE, todo.input.name, callback);
     }
 
     editToDo(todo, callback) {
@@ -20,6 +21,14 @@ class TodoManagerService {
 
     listToDos(callback) {
         this.enclave.getAllRecords(TO_DO_TABLE, callback);
+    }
+
+    filterToDos( query,sort,callback) {
+        if( !sort || sort != "dsc") {
+            sort = "asc";
+        }
+
+        this.enclave.filter(TO_DO_TABLE, query, sort, callback);
     }
 }
 

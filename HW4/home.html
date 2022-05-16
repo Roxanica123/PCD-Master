@@ -3,6 +3,7 @@
     <header>
         <h2>TODO Application</h2>
     </header>
+
     <hr>
 
     <!-- Adding items -->
@@ -18,11 +19,12 @@
                 <input type="checkbox" data-view-model="@checkbox">
             </label>
             <input type="text" data-view-model="@input">
-            <!-- <psk-button data-view-model="@delete" data-tag="deleteItem" button-class="btn btn-danger">➖</psk-button> -->
         </div>
 
         <div slot="no-data">{{ @no-data }}</div>
     </section>
+
+    <hr>
 
     <!--Delete button-->
     <section class="deleteItems">
@@ -30,7 +32,21 @@
         <psk-button data-view-model="@delete" data-tag="deleteItem" button-class="btn btn-danger">―(x_x)→</psk-button>
     </section>
 
-    <hr>
+    <!-- Sort and fitler -->
+    <section class="addition">
+        <label >Filter TODOs:</label>
+        <input type="text" data-tag="sort-query-text-area" >
+        <psk-button data-view-model="@sort" data-tag="sortItem" button-class="btn btn-danger">Sort</psk-button>
+
+        <section >
+            <label>
+                Sort descendent: <input data-tag="asc-dsc" type="checkbox" >
+                <span></span>
+              </label>
+        </section>
+    </section>
+
+
 
     <footer>
         <strong>HINTs:</strong>
