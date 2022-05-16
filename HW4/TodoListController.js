@@ -49,6 +49,11 @@ export default class TodoListController extends WebcController {
             itemsElement.addEventListener("click", this._changeToDoCheckedState)
             itemsElement.addEventListener("dblclick", this._doubleClickHandler)
         }
+
+        const deleteElement = this.getElementByTag('deleteItem');
+        if (deleteElement) {
+            deleteElement.addEventListener("click", this._deleteItems);
+        }
     }
 
     populateItemList(callback) {
@@ -156,8 +161,32 @@ export default class TodoListController extends WebcController {
     editListItem(todo) {
         if (!this.todoIsValid(todo)) {
             return;
-        }
+        }  
         this.TodoManagerService.editToDo(todo, (err, data) => {
+            if (err) {
+                return this._handleError(err);
+            }
+        })
+    }
+
+    _deleteItems = (event) => {
+        let items = this.model.items
+        items.forEach(
+            elment =>{
+                if(elment.checkbox.checked){
+                    this.deleteListItem(elment);
+                }
+            }
+        )
+    }
+
+    deleteListItem(element) {
+        if (!this.todoIsValid(element)) {
+            return;
+        }
+        let items = this.model.items
+        let itemIndex = items.findIndex((todo) => todo.input.name === element.input.name)
+        this.TodoManagerService.removeToDo(element, (err, data) => {
             if (err) {
                 return this._handleError(err);
             }
