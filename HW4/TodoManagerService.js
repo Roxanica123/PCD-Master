@@ -10,17 +10,9 @@ class TodoManagerService {
         this.enclave.insertRecord(TO_DO_TABLE, todo.input.name, todo, callback);
     }
 
-    // removeToDo(todoPath, callback) {
-    //     this.enclave.deleteRecord(todo.input.name, callback);
-    // }
     removeToDo(todo, callback) {
-      //  document.write(TO_DO_TABLE,todo.input.name "\n");
       this.enclave.deleteRecord(TO_DO_TABLE,todo.input.name, callback);
     }
-    // removeToDo(todo, callback) {
-    //    //this.enclave.deleteRecord(TO_DO_TABLE, todo.input.name, callback);
-    //    this.enclave.updateRecord(TO_DO_TABLE, todo.input.name, callback);
-    // }
 
     editToDo(todo, callback) {
         this.enclave.updateRecord(TO_DO_TABLE, todo.input.name, todo, callback);
