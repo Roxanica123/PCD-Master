@@ -3,7 +3,6 @@
     <header>
         <h2>TODO Application</h2>
     </header>
-
     <hr>
 
     <!-- Adding items -->
@@ -19,9 +18,16 @@
                 <input type="checkbox" data-view-model="@checkbox">
             </label>
             <input type="text" data-view-model="@input">
+            <!-- <psk-button data-view-model="@delete" data-tag="deleteItem" button-class="btn btn-danger">➖</psk-button> -->
         </div>
 
         <div slot="no-data">{{ @no-data }}</div>
+    </section>
+
+    <!--Delete button-->
+    <section class="deleteItems">
+        <label for="@item.id">Delete TODO:</label>
+        <psk-button data-view-model="@delete" data-tag="deleteItem" button-class="btn btn-danger">―(x_x)→</psk-button>
     </section>
 
     <hr>
