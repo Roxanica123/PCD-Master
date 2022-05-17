@@ -59,6 +59,19 @@ export default class TodoListController extends WebcController {
         if (sortElement) {
             sortElement.addEventListener("click", this._sortItems);
         }
+        this.modifyText();
+    }
+    
+    modifyText(){
+        this.model.items.forEach(item => {
+            if (item.checkbox.checked === true) {
+                const element = document.querySelector(`div input[name=${item.input.name}]`)
+            
+                element.removeAttribute("readonly");
+                //this.model.items.push(this.model.items.splice(itemIndex, 1)[0]);
+                element.classList.toggle("todo-checked");
+            }
+        })
     }
 
     populateItemList(callback) {
@@ -154,6 +167,11 @@ export default class TodoListController extends WebcController {
             ...items[itemIndex].checkbox,
             checked: !items[itemIndex].checkbox.checked,
         }
+        
+        const element = event.target.parentElement.nextElementSibling;
+        element.removeAttribute("readonly");
+        element.classList.toggle("todo-checked");
+        
         this.setItemsClean(items);
         this.editListItem(items[itemIndex]);
     }
